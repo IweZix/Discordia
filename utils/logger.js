@@ -29,7 +29,7 @@ function getPath(guildId) {
   const date = new Date();
   const dateString = date.toISOString().split('T')[0];
   const path = jsonDbPath + dateString + '/' + guildId +  '.json';
-  if (!fs.existsSync(path)) {
+  if (!fs.existsSync(jsonDbPath)) {
     fs.mkdirSync(jsonDbPath + dateString);
   }
   return path;

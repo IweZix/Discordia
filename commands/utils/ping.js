@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { writeErrorCommande } = require("../../utils/logger");
+const { isActivated } = require("../../utils/onoff");
 
 module.exports = {
 
@@ -12,6 +13,11 @@ module.exports = {
     async run(interaction) {
 
         try {
+            if (!isActivated(interaction, this.data.name)) {
+                await interaction.reply({ content: "The command is disabled!", ephemeral: true });
+                return;
+            }
+
             const embed = new EmbedBuilder()
                 .setTitle("Ping")
                 .setDescription(`Ping : \`${interaction?.client?.ws?.ping}\`.`)
