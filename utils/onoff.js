@@ -1,6 +1,7 @@
 const { parse, serialize } = require('./json');
 const fs = require('fs');
 
+let jsonDbPath1 = __dirname + '/../data/';
 let jsonDbPath = __dirname + '/../data/onoff/';
 
 /**
@@ -63,6 +64,7 @@ function off (interaction, command) {
 function getPath(guildId) {
   const path = jsonDbPath + guildId + '.json';
   if (!fs.existsSync(jsonDbPath)) {
+    fs.mkdirSync(jsonDbPath1);
     fs.mkdirSync(jsonDbPath);
   }
   return path;
