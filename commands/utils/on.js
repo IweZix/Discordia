@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 const { writeErrorCommande } = require("../../utils/logger");
 const { isCommandExists } = require("../../utils/functions");
 const { on } = require("../../utils/onoff");
@@ -9,7 +9,7 @@ module.exports = {
         .setName("on")
         .setDescription("Active a command")
         .setDMPermission(true)
-        .setDefaultMemberPermissions(null)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option => 
             option.setName("command")
                 .setDescription("The command to enable")
