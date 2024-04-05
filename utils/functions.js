@@ -1,3 +1,5 @@
+const { Client, CommandInteraction } = require("discord.js")
+
 /**
  * Convert a time to a readable format
  * @param {Date} time The time to convert
@@ -10,6 +12,17 @@ const uptime = (time) => {
     return `${hours} ${minutes} ${seconds}`
 }
 
+/**
+ * Check if a command exists
+ * @param {Client} client the client to check
+ * @param {String} command the command to check
+ * @returns {Boolean} true if the command exists, false otherwise
+ */
+const isCommandExists = (client, command) => {
+    return client.commands.has(command)
+}
+
 module.exports = {
-    uptime
+    uptime,
+    isCommandExists
 }

@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const { uptime } = require("../../utils/functions");
 const { writeErrorCommande } = require("../../utils/logger");
+const { isActivated } = require("../../utils/onoff");
 require("dotenv").config();
 
 module.exports = {
@@ -18,6 +19,11 @@ module.exports = {
 
   async run(interaction) {
     try {
+      if (!isActivated(interaction, this.data.name)) {
+        await interaction.reply({ content: "The command is disabled!", ephemeral: true });
+        return;
+      }
+
       const client = interaction?.client;
 
       const user = interaction.options.getUser("user") || interaction.user;
