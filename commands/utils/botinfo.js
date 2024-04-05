@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const { uptime } = require("../../utils/functions")
 const { writeErrorCommande } = require("../../utils/logger");
 const { isActivated } = require("../../utils/onoff");
@@ -41,7 +41,27 @@ module.exports = {
                 .setTimestamp()
             ;
 
-            await interaction.reply({ embeds: [embed] });
+            const buttons = new ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setStyle("5")
+                        .setLabel("Invite me")
+                        .setEmoji("➕")
+                        .setURL(process.env.INVITE_BOT_URL),
+                    new ButtonBuilder()
+                        .setStyle("5")
+                        .setLabel("Support Server")
+                        .setEmoji("🛠")
+                        .setURL(process.env.SUPPORT_SERVER_URL),
+                    new ButtonBuilder()
+                        .setStyle("5")
+                        .setLabel("Web Site")
+                        .setEmoji("🌐")
+                        .setURL(process.env.WEB_SITE_URL)
+                );
+            ;
+
+            await interaction.reply({ embeds: [embed], components: [buttons]});
         } catch (error) {
             writeErrorCommande(interaction, error);
             await interaction.reply("There was an error while executing this command!");
