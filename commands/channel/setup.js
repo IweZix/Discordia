@@ -9,7 +9,7 @@ const { isActivated } = require("../../utils/onoff");
 module.exports = {
 
     data: new SlashCommandBuilder()
-        .setName("setupvocal")
+        .setName("setup")
         .setDescription("Setup the vocal channel")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
