@@ -1,7 +1,5 @@
 const { Events } = require("discord.js");
 
-const logger = new FastLogging(true, true);
-
 module.exports = {
   name: Events.GuildCreate,
 
@@ -11,7 +9,7 @@ module.exports = {
       const channel = client.channels.cache.get(channelId);
 
       if (!channel) return;
-      
+
       channel.send(`\`\`${client.name}\`\` has joined \`\`${guild.name}\`\`-\`\`${guild.id}\`\``);
 
     } catch (error) {
