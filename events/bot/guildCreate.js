@@ -10,7 +10,7 @@ module.exports = {
 
       if (!channel) return;
 
-      channel.send(`\`\`${client.name}\`\` has joined \`\`${guild.name}\`\`-\`\`${guild.id}\`\``);
+      channel.send(`\`\`${client.user.username}\`\` has joined \`\`${guild.name}\`\`-\`\`${guild.id}\`\``);
 
     } catch (error) {
       logger.error(error);
